@@ -6,9 +6,20 @@ import { useState } from "react";
 const App = () => {
   const [name, setName] = useState("James");
   const [address, setAddress] = useState("");
+  const [todos, setTodos] = useState([
+    { id: "todo1", title: "Watching youtube" },
+    { id: "todo2", title: "Doing homework" },
+    { id: "todo3", title: "Playing game" },
+  ]);
+
   const handleEventClick = () => {
-    console.log(address);
-    setName(address);
+    if (!address) return;
+    let todo = {
+      id: Math.floor(Math.random()) * 10000,
+      title: address,
+    };
+    setTodos([...todos, todo]);
+    setAddress("");
   };
 
   const handleOnChangeInput = (e) => {
@@ -21,6 +32,15 @@ const App = () => {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h2>Learn ReactJS with {name}</h2>
+        <div className="todo-container">
+          {todos.map((todo) => {
+            return (
+              <li className="todo-child" key={todo.id}>
+                {todo.title}
+              </li>
+            );
+          })}
+        </div>
         <input
           type="text"
           value={address}
