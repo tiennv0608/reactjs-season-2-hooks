@@ -4,20 +4,32 @@ import Nav from "./views/Nav";
 
 const App = () => {
   let name = "James";
-  let year = 2022;
-  let link =
-    "https://www.youtube.com/watch?v=Y9gTouaZJ5s&list=PLncHg6Kn2JT4xzJyhXfmJ53dzwVbq-S_E&index=9";
-  let obj = { name: "James", age: 18 };
+
+  const handleEventClick = (e) => {
+    console.log("Click me!", e.target.value);
+  };
+
   return (
     <div className="App">
       <Nav />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h2>
-          Learn ReactJS with {name} in {year}
-        </h2>
-        <a href={link}>Visit</a>
-        <p>{JSON.stringify(obj)}</p>
+        <h2>Learn ReactJS with {name}</h2>
+        <input
+          type="text"
+          value="James"
+          onClick={(e) => {
+            handleEventClick(e);
+          }}
+        />
+        <button
+          type="button"
+          onClick={(e) => {
+            handleEventClick(e);
+          }}
+        >
+          Click me!
+        </button>
       </header>
     </div>
   );
