@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
+import Nav from "./views/Nav";
 
 const App = () => {
   let name = "James";
@@ -9,6 +10,7 @@ const App = () => {
   let obj = { name: "James", age: 18 };
   return (
     <div className="App">
+      <Nav />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h2>
