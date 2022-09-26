@@ -1,12 +1,18 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Nav from "./views/Nav";
+import { useState } from "react";
 
 const App = () => {
-  let name = "James";
+  const [name, setName] = useState("James");
+  const [address, setAddress] = useState("");
+  const handleEventClick = () => {
+    console.log(address);
+    setName(address);
+  };
 
-  const handleEventClick = (e) => {
-    console.log("Click me!", e.target.value);
+  const handleOnChangeInput = (e) => {
+    setAddress(e.target.value);
   };
 
   return (
@@ -17,15 +23,13 @@ const App = () => {
         <h2>Learn ReactJS with {name}</h2>
         <input
           type="text"
-          value="James"
-          onClick={(e) => {
-            handleEventClick(e);
-          }}
+          value={address}
+          onChange={(e) => handleOnChangeInput(e)}
         />
         <button
           type="button"
-          onClick={(e) => {
-            handleEventClick(e);
+          onClick={() => {
+            handleEventClick();
           }}
         >
           Click me!
