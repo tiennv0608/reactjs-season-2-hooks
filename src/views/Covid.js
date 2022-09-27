@@ -11,7 +11,7 @@ const Covid = () => {
   const { data: dataCovid, isLoading, isError } = useFetch(url);
 
   return (
-    <>
+    <div>
       <h3>Covid 19 tracking in Viet Nam</h3>
       <table id="customers">
         <thead>
@@ -55,7 +55,7 @@ const Covid = () => {
           )}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

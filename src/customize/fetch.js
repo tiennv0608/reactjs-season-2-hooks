@@ -23,7 +23,7 @@ const useFetch = (url) => {
           setData(data);
           setIsLoading(false);
           setIsError(false);
-        }, 5000);
+        }, 3000);
       })
       .catch((e) => {
         setIsError(true);

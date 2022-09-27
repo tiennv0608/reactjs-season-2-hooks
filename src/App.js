@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import Todo from "./views/Todo";
 import Covid from "./views/Covid";
 import { Countdown, NewCountDown } from "./views/Countdown";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const App = () => {
   const [name, setName] = useState("James");
@@ -46,40 +47,48 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <Nav />
-        <img src={logo} className="App-logo" alt="logo" />
-        <Countdown onTimesup={onTimesup} />
-        <span>-----------------------------</span>
-        <NewCountDown onTimesup={onTimesup} />
-        <h2>Learn ReactJS with {name}</h2>
-        <Covid />
-        {/* <Todo
-          todos={todos}
-          title={"All todo"}
-          deleteDataTodo={deleteDataTodo}
-        />
-        <Todo
-          todos={todos.filter((item) => item.author === "James")}
-          title={`James's todo`}
-          deleteDataTodo={deleteDataTodo}
-        />
-        <input
-          type="text"
-          value={address}
-          onChange={(e) => handleOnChangeInput(e)}
-        />
-        <button
-          type="button"
-          onClick={() => {
-            handleEventClick();
-          }}
-        >
-          Click me!
-        </button> */}
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <Nav />
+          <img src={logo} className="App-logo" alt="logo" />
+        </header>
+        {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+        <div>
+          <Switch>
+            <Route path="/" exact>
+              <Covid />
+            </Route>
+            <Route path="/timer">
+              <Countdown onTimesup={onTimesup} />
+              <span>-----------------------------</span>
+              <NewCountDown onTimesup={onTimesup} />
+            </Route>
+            <Route path="/todo">
+              <Todo
+                todos={todos}
+                title={"All todo"}
+                deleteDataTodo={deleteDataTodo}
+              />
+              <input
+                type="text"
+                value={address}
+                onChange={(e) => handleOnChangeInput(e)}
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  handleEventClick();
+                }}
+              >
+                Click me!
+              </button>
+            </Route>
+          </Switch>
+        </div>
+      </div>
+    </Router>
   );
 };
 
