@@ -3,6 +3,7 @@ import "./App.css";
 import Nav from "./views/Nav";
 import { useState, useEffect } from "react";
 import Todo from "./views/Todo";
+import Covid from "./views/Covid";
 
 const App = () => {
   const [name, setName] = useState("James");
@@ -45,7 +46,8 @@ const App = () => {
         <Nav />
         <img src={logo} className="App-logo" alt="logo" />
         <h2>Learn ReactJS with {name}</h2>
-        <Todo
+        <Covid />
+        {/* <Todo
           todos={todos}
           title={"All todo"}
           deleteDataTodo={deleteDataTodo}
@@ -67,7 +69,7 @@ const App = () => {
           }}
         >
           Click me!
-        </button>
+        </button> */}
       </header>
     </div>
   );
