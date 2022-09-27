@@ -4,12 +4,19 @@ import moment from "moment";
 
 const Covid = () => {
   const [dataCovid, setDataCovid] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
+    let currentDate = new Date(new Date().getTime() - 2 * 24 * 60 * 60 * 1000);
+    let pastDate = new Date(currentDate.getTime() - 30 * 24 * 60 * 60 * 1000);
+    currentDate = moment(currentDate).format("YYYY-MM-DD");
+    pastDate = moment(pastDate).format("YYYY-MM-DD");
+    console.log(">>> check current date: ", currentDate);
+    console.log(">>> check past date: ", pastDate);
     axios
       .get(
-        "https://api.covid19api.com/country/vietnam?from=2022-08-26T00:00:00Z&to=2022-09-25T00:00:00Z"
+        `https://1api.covid19api.com/country/vietnam?from=${pastDate}T00:00:00Z&to=${currentDate}T00:00:00Z`
       )
       .then((res) => {
         setTimeout(() => {
@@ -23,8 +30,13 @@ const Covid = () => {
           }
 
           setDataCovid(data);
-          setLoading(false);
+          setIsLoading(false);
+          setIsError(false);
         }, 5000);
+      })
+      .catch((e) => {
+        setIsError(true);
+        setIsLoading(false);
       });
   }, []);
 
@@ -42,7 +54,8 @@ const Covid = () => {
           </tr>
         </thead>
         <tbody>
-          {!loading &&
+          {!isError &&
+            !isLoading &&
             dataCovid &&
             dataCovid.length > 0 &&
             dataCovid.map((item) => {
@@ -56,10 +69,17 @@ const Covid = () => {
                 </tr>
               );
             })}
-          {loading && (
+          {isLoading && (
             <tr>
               <td colSpan="5" style={{ textAlign: "center" }}>
                 Loading...
+              </td>
+            </tr>
+          )}
+          {isError && (
+            <tr>
+              <td colSpan="5" style={{ textAlign: "center" }}>
+                Something wrong...
               </td>
             </tr>
           )}
