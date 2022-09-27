@@ -17,7 +17,7 @@ const App = () => {
   const handleEventClick = () => {
     if (!address) return;
     let todo = {
-      id: Math.floor(Math.random()) * 10000,
+      id: Math.floor(Math.random() * 10000),
       title: address,
       author: "James",
     };
@@ -29,16 +29,27 @@ const App = () => {
     setAddress(e.target.value);
   };
 
+  const deleteDataTodo = (id) => {
+    let currentTodos = todos;
+    currentTodos = todos.filter((item) => item.id !== id);
+    setTodos(currentTodos);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <Nav />
         <img src={logo} className="App-logo" alt="logo" />
         <h2>Learn ReactJS with {name}</h2>
-        <Todo todos={todos} title={"All todo"} />
+        <Todo
+          todos={todos}
+          title={"All todo"}
+          deleteDataTodo={deleteDataTodo}
+        />
         <Todo
           todos={todos.filter((item) => item.author === "James")}
           title={`James's todo`}
+          deleteDataTodo={deleteDataTodo}
         />
         <input
           type="text"
