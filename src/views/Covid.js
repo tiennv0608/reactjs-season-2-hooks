@@ -2,11 +2,12 @@ import moment from "moment";
 import useFetch from "../customize/fetch";
 
 const Covid = () => {
-  let currentDate = new Date(new Date().getTime() - 2 * 24 * 60 * 60 * 1000);
-  let pastDate = moment().subtract(32, "days");
-  // currentDate = moment(currentDate).format("YYYY-MM-DD");
-  // pastDate = moment(pastDate).format("YYYY-MM-DD");
-  let url = `https://api.covid19api.com/country/vietnam?from=${pastDate.toISOString()}&to=${currentDate.toISOString()}`;
+  const today = moment().startOf("day").toISOString(true);
+  const pastDate = moment()
+    .startOf("day")
+    .subtract(31, "days")
+    .toISOString(true);
+  const url = `https://api.covid19api.com/country/vietnam?from=${pastDate}&to=${today}`;
 
   const { data: dataCovid, isLoading, isError } = useFetch(url);
 

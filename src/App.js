@@ -5,11 +5,10 @@ import { useState, useEffect } from "react";
 import Todo from "./views/Todo";
 import Covid from "./views/Covid";
 import { Countdown, NewCountDown } from "./views/Countdown";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 const App = () => {
-  const [name, setName] = useState("James");
-  const [address, setAddress] = useState("");
+  const [title, setTitle] = useState("");
   const [todos, setTodos] = useState([
     { id: "todo1", title: "Watching youtube", author: "James" },
     { id: "todo2", title: "Doing homework", author: "James" },
@@ -19,21 +18,21 @@ const App = () => {
 
   useEffect(() => {
     console.log("run use effect");
-  }, [address]);
+  }, [title]);
 
   const handleEventClick = () => {
-    if (!address) return;
+    if (!title) return;
     let todo = {
       id: Math.floor(Math.random() * 10000),
-      title: address,
+      title: title,
       author: "James",
     };
     setTodos([...todos, todo]);
-    setAddress("");
+    setTitle("");
   };
 
   const handleOnChangeInput = (e) => {
-    setAddress(e.target.value);
+    setTitle(e.target.value);
   };
 
   const deleteDataTodo = (id) => {
@@ -73,7 +72,7 @@ const App = () => {
               />
               <input
                 type="text"
-                value={address}
+                value={title}
                 onChange={(e) => handleOnChangeInput(e)}
               />
               <button
