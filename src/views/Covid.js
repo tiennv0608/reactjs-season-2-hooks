@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
 import moment from "moment";
 import useFetch from "../customize/fetch";
 
 const Covid = () => {
   let currentDate = new Date(new Date().getTime() - 2 * 24 * 60 * 60 * 1000);
-  let pastDate = new Date(currentDate.getTime() - 30 * 24 * 60 * 60 * 1000);
-  currentDate = moment(currentDate).format("YYYY-MM-DD");
-  pastDate = moment(pastDate).format("YYYY-MM-DD");
-  let url = `https://api.covid19api.com/country/vietnam?from=${pastDate}T00:00:00Z&to=${currentDate}T00:00:00Z`;
+  let pastDate = moment().subtract(32, "days");
+  // currentDate = moment(currentDate).format("YYYY-MM-DD");
+  // pastDate = moment(pastDate).format("YYYY-MM-DD");
+  let url = `https://api.covid19api.com/country/vietnam?from=${pastDate.toISOString()}&to=${currentDate.toISOString()}`;
 
   const { data: dataCovid, isLoading, isError } = useFetch(url);
 
