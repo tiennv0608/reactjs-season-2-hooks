@@ -8,9 +8,10 @@ const App = () => {
   const [name, setName] = useState("James");
   const [address, setAddress] = useState("");
   const [todos, setTodos] = useState([
-    { id: "todo1", title: "Watching youtube" },
-    { id: "todo2", title: "Doing homework" },
-    { id: "todo3", title: "Playing game" },
+    { id: "todo1", title: "Watching youtube", author: "James" },
+    { id: "todo2", title: "Doing homework", author: "James" },
+    { id: "todo3", title: "Playing game", author: "Tien" },
+    { id: "todo4", title: "Reading book", author: "Tien" },
   ]);
 
   const handleEventClick = () => {
@@ -18,6 +19,7 @@ const App = () => {
     let todo = {
       id: Math.floor(Math.random()) * 10000,
       title: address,
+      author: "James",
     };
     setTodos([...todos, todo]);
     setAddress("");
@@ -29,11 +31,15 @@ const App = () => {
 
   return (
     <div className="App">
-      <Nav />
       <header className="App-header">
+        <Nav />
         <img src={logo} className="App-logo" alt="logo" />
         <h2>Learn ReactJS with {name}</h2>
-        <Todo todos={todos} />
+        <Todo todos={todos} title={"All todo"} />
+        <Todo
+          todos={todos.filter((item) => item.author === "James")}
+          title={`James's todo`}
+        />
         <input
           type="text"
           value={address}
