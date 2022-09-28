@@ -6,6 +6,8 @@ import Todo from "./views/Todo";
 import Covid from "./views/Covid";
 import { Countdown, NewCountDown } from "./views/Countdown";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Blog from "./views/Blog";
+import DetailBlog from "./views/DetailBlog";
 
 const App = () => {
   const [title, setTitle] = useState("");
@@ -83,6 +85,12 @@ const App = () => {
               >
                 Click me!
               </button>
+            </Route>
+            <Route path="/blog" exact>
+              <Blog />
+            </Route>
+            <Route path="/blog/:id">
+              <DetailBlog />
             </Route>
           </Switch>
         </div>

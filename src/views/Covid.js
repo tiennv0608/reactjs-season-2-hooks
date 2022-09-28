@@ -9,7 +9,7 @@ const Covid = () => {
     .toISOString(true);
   const url = `https://api.covid19api.com/country/vietnam?from=${pastDate}&to=${today}`;
 
-  const { data: dataCovid, isLoading, isError } = useFetch(url);
+  const { data: dataCovid, isLoading, isError } = useFetch(url, true);
 
   return (
     <div>

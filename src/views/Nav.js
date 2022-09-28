@@ -13,6 +13,9 @@ const Nav = () => {
       <NavLink activeClassName="active" to="/todo">
         Todo Apps
       </NavLink>
+      <NavLink activeClassName="active" to="/blog">
+        Blog Apps
+      </NavLink>
       <NavLink activeClassName="active" to="/secret">
         Secret
       </NavLink>
