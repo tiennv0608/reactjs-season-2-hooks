@@ -22,3 +22,18 @@
     }
   }
 }
+
+.blog-detail {
+  border: 1px solid grey;
+  padding: 10px;
+  border-radius: 3px;
+  margin: 10px;
+  min-height: 100px;
+  .title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .content {
+    padding-top: 10px;
+  }
+}
