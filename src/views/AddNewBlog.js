@@ -4,7 +4,23 @@ const AddNewBlog = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const handleSubmitBtn = () => {
-    console.log(">>>check data: ", title, content);
+    if (!title) {
+      alert("Missing title");
+      return;
+    }
+    if (!content) {
+      alert("Missing content");
+      return;
+    }
+
+    console.log(
+      ">>>check data before send >>> title: ",
+      title,
+      "content: ",
+      content
+    );
+    setTitle("");
+    setContent("");
   };
   return (
     <div className="add-new-container">
