@@ -1,5 +1,5 @@
 import logo from "./logo.svg";
-import "./App.css";
+import "./App.scss";
 import Nav from "./views/Nav";
 import { useState, useEffect } from "react";
 import Todo from "./views/Todo";

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Blog.scss";
-const AddNewBlog = () => {
+import axios from "axios";
+const AddNewBlog = (props) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const handleSubmitBtn = () => {
@@ -13,12 +14,21 @@ const AddNewBlog = () => {
       return;
     }
 
-    console.log(
-      ">>>check data before send >>> title: ",
-      title,
-      "content: ",
-      content
-    );
+    let data = {
+      title: title,
+      body: content,
+      userId: 1,
+    };
+
+    axios
+      .post("https://jsonplaceholder.typicode.com/posts", data)
+      .then((res) => {
+        if (res && res.data) {
+          let newBlog = res.data;
+          props.handleAddNewBlog(newBlog);
+        }
+      });
+
     setTitle("");
     setContent("");
   };
