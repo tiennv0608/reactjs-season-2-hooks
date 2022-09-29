@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Blog from "./views/Blog";
 import DetailBlog from "./views/DetailBlog";
 import AddNewBlog from "./views/AddNewBlog";
+import NotFound from "./views/NotFound";
 
 const App = () => {
   const [title, setTitle] = useState("");
@@ -95,6 +96,9 @@ const App = () => {
             </Route>
             <Route path="/add-new-blog">
               <AddNewBlog />
+            </Route>
+            <Route path="*">
+              <NotFound />
             </Route>
           </Switch>
         </div>
